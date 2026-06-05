@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AL HASRA - RP Generator | Kurikulum Merdeka</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Sora:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue-50:  #eff6ff;
+    --blue-100: #dbeafe;
+    --blue-200: #bfdbfe;
+    --blue-300: #93c5fd;
+    --blue-400: #60a5fa;
+    --blue-500: #3b82f6;
+    --blue-600: #2563eb;
+    --blue-700: #1d4ed8;
+    --blue-800: #1e3a8a;
+    --blue-900: #1e2f5c;
+    --teal-400: #2dd4bf;
+    --teal-500: #14b8a6;
+    --amber-400: #fbbf24;
+    --amber-500: #f59e0b;
+    --green-400: #4ade80;
+    --green-500: #22c55e;
+    --purple-400: #a78bfa;
+    --white: #ffffff;
+    --gray-50: #f8fafc;
+    --gray-100: #f1f5f9;
+    --gray-200: #e2e8f0;
+    --gray-300: #cbd5e1;
+    --gray-400: #94a3b8;
+    --gray-500: #64748b;
+    --gray-600: #475569;
+    --gray-700: #334155;
+    --gray-900: #0f172a;
+    --ink: #0f172a;
+    --accent: #2563eb;
+    --accent-light: #eff6ff;
+    --accent-hover: #1d4ed8;
+    --border: #bfdbfe;
+    --shadow-sm: 0 1px 3px rgba(37,99,235,0.08), 0 1px 2px rgba(0,0,0,0.04);
+    --shadow: 0 4px 16px rgba(37,99,235,0.10), 0 2px 6px rgba(0,0,0,0.05);
+    --shadow-lg: 0 12px 40px rgba(37,99,235,0.15), 0 4px 16px rgba(0,0,0,0.06);
+    --shadow-xl: 0 24px 64px rgba(37,99,235,0.18);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--blue-50);
+    color: var(--ink);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ═══ HEADER ═══ */
+  header {
+    background: var(--white);
+    border-bottom: 1px solid var(--blue-100);
+    padding: 0 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 68px;
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    box-shadow: 0 2px 12px rgba(37,99,235,0.08);
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+    color: var(--ink);
+  }
+  .logo-icon {
+    width: 42px; height: 42px;
+    background: linear-gradient(135deg, var(--blue-600), var(--blue-400));
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    box-shadow: 0 4px 12px rgba(37,99,235,0.35);
+    flex-shrink: 0;
+  }
+  .logo-name {
+    font-family: 'Sora', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--blue-700);
+    letter-spacing: -.3px;
+    line-height: 1.1;
+  }
+  .logo-name span { color: var(--blue-500); }
+  .logo-tag {
+    font-size: 10px;
+    color: var(--gray-400);
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .header-center {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--blue-50);
+    border: 1px solid var(--blue-100);
+    padding: 6px 16px;
+    border-radius: 100px;
+    font-size: 12px;
+    color: var(--blue-600);
+    font-weight: 600;
+  }
+  .header-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green-500); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.6;transform:scale(1.2)} }
+  .header-right { display: flex; align-items: center; gap: 10px; }
+  .btn-hdr {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    transition: all .18s;
+    border: none;
+  }
+  .btn-hdr.secondary {
+    background: var(--blue-50);
+    color: var(--blue-700);
+    border: 1px solid var(--blue-200);
+  }
+  .btn-hdr.secondary:hover { background: var(--blue-100); }
+  .btn-hdr.primary {
+    background: linear-gradient(135deg, var(--blue-600), var(--blue-500));
+    color: #fff;
+    box-shadow: 0 3px 10px rgba(37,99,235,0.3);
+  }
+  .btn-hdr.primary:hover { background: linear-gradient(135deg, var(--blue-700), var(--blue-600)); box-shadow: 0 5px 15px rgba(37,99,235,0.4); }
+
+  /* ═══ HERO ═══ */
+  .hero {
+    background: linear-gradient(135deg, var(--blue-900) 0%, var(--blue-800) 40%, var(--blue-700) 75%, var(--blue-600) 100%);
+    color: #fff;
+    padding: 52px 48px 68px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 55% 100% at 90% 50%, rgba(96,165,250,.22) 0%, transparent 60%),
+      radial-gradient(ellipse 35% 60% at 5% 90%, rgba(45,212,191,.15) 0%, transparent 55%),
+      radial-gradient(ellipse 30% 40% at 50% 0%, rgba(255,255,255,.05) 0%, transparent 50%);
+  }
+  .hero-dots {
+    position: absolute; inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,.12) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+  .hero-inner {
+    position: relative;
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+  }
+  .hero-left { max-width: 640px; }
+  .hero-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,.12);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,.2);
+    color: #bfdbfe;
+    padding: 6px 16px;
+    border-radius: 100px;
+    font-size: 11.5px;
+    letter-spacing: .9px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+  .hero h1 {
+    font-family: 'Sora', sans-serif;
+    font-size: clamp(28px, 4vw, 46px);
+    font-weight: 800;
+    line-height: 1.12;
+    margin-bottom: 16px;
+    letter-spacing: -.5px;
+  }
+  .hero h1 em { font-style: normal; color: var(--amber-400); }
+  .hero p {
+    font-size: 15.5px;
+    color: rgba(255,255,255,.7);
+    line-height: 1.7;
+    max-width: 500px;
+    margin-bottom: 32px;
+  }
+  .hero-stats {
+    display: flex;
+    gap: 0;
+    background: rgba(255,255,255,.1);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,.18);
+    border-radius: 14px;
+    overflow: hidden;
+    width: fit-content;
+  }
+  .hero-stat {
+    padding: 14px 24px;
+    border-right: 1px solid rgba(255,255,255,.12);
+    text-align: center;
+  }
+  .hero-stat:last-child { border-right: none; }
+  .hero-stat-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--amber-400);
+    display: block;
+  }
+  .hero-stat-lbl { font-size: 11px; color: rgba(255,255,255,.5); text-transform: uppercase; letter-spacing: .8px; }
+  .hero-right {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+  .hero-feature {
+    background: rgba(255,255,255,.1);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,.18);
+    border-radius: 12px;
+    padding: 12px 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    color: rgba(255,255,255,.85);
+    width: 240px;
+  }
+  .hero-feature-icon { font-size: 18px; flex-shrink: 0; }
+
+  /* ═══ MAIN LAYOUT ═══ */
+  .main-wrapper {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 40px 48px 80px;
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 28px;
+    align-items: start;
+  }
+
+  /* ═══ SIDEBAR ═══ */
+  .sidebar {
+    position: sticky;
+    top: 84px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  /* ═══ CARD ═══ */
+  .card {
+    background: var(--white);
+    border-radius: 18px;
+    border: 1px solid var(--blue-100);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    transition: box-shadow .2s;
+  }
+  .card:hover { box-shadow: var(--shadow); }
+  .card-header {
+    padding: 16px 20px 13px;
+    border-bottom: 1px solid var(--blue-50);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(to right, var(--blue-50), var(--white));
+  }
+  .card-icon {
+    width: 34px; height: 34px;
+    border-radius: 9px;
+    display: grid;
+    place-items: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .ci-blue { background: linear-gradient(135deg, #dbeafe, #bfdbfe); }
+  .ci-teal { background: linear-gradient(135deg, #ccfbf1, #99f6e4); }
+  .ci-amber { background: linear-gradient(135deg, #fef3c7, #fde68a); }
+  .ci-purple { background: linear-gradient(135deg, #ede9fe, #ddd6fe); }
+  .card-title {
+    font-size: 11.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .9px;
+    color: var(--blue-600);
+  }
+  .card-body { padding: 16px 20px 18px; }
+
+  /* ═══ PROGRESS STEPS ═══ */
+  .steps { display: flex; flex-direction: column; gap: 0; }
+  .step {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 9px 0;
+    position: relative;
+  }
+  .step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 15px; top: 32px; bottom: -4px;
+    width: 2px;
+    background: var(--gray-100);
+    border-radius: 1px;
+  }
+  .step.done::after { background: linear-gradient(to bottom, var(--teal-400), var(--teal-500)); }
+  .step.active::after { background: linear-gradient(to bottom, var(--blue-300), var(--blue-100)); }
+  .step-num {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--gray-100);
+    color: var(--gray-400);
+    font-size: 12px;
+    font-weight: 700;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    font-family: 'JetBrains Mono', monospace;
+    border: 2px solid transparent;
+    transition: all .2s;
+  }
+  .step.active .step-num {
+    background: linear-gradient(135deg, var(--blue-600), var(--blue-500));
+    color: #fff;
+    border-color: var(--blue-200);
+    box-shadow: 0 3px 10px rgba(37,99,235,.3);
+  }
+  .step.done .step-num {
+    background: linear-gradient(135deg, var(--teal-500), var(--teal-400));
+    color: #fff;
+    border-color: #99f6e4;
+  }
+  .step-info { padding-top: 5px; }
+  .step-label { font-size: 13px; font-weight: 600; color: var(--gray-400); transition: color .2s; }
+  .step.active .step-label { color: var(--blue-700); }
+  .step.done .step-label { color: var(--teal-500); }
+  .step-desc { font-size: 11.5px; color: var(--gray-300); margin-top: 1px; }
+  .step.active .step-desc { color: var(--blue-400); }
+
+  /* ═══ FORM ═══ */
+  .field { margin-bottom: 13px; }
+  .field:last-child { margin-bottom: 0; }
+  label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .7px;
+    color: var(--gray-500);
+    margin-bottom: 5px;
+  }
+  .lbl-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--blue-400); flex-shrink: 0; }
+  select, input[type="text"], input[type="number"], textarea {
+    width: 100%;
+    padding: 9px 13px;
+    border: 1.5px solid var(--blue-100);
+    border-radius: 9px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 13.5px;
+    color: var(--ink);
+    background: var(--white);
+    outline: none;
+    transition: border-color .18s, box-shadow .18s, background .18s;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  select:focus, input:focus, textarea:focus {
+    border-color: var(--blue-400);
+    box-shadow: 0 0 0 3px rgba(37,99,235,.1);
+    background: var(--white);
+  }
+  select:hover, input:hover, textarea:hover { border-color: var(--blue-300); }
+  .select-wrap { position: relative; }
+  .select-wrap::after {
+    content: '▾';
+    position: absolute;
+    right: 12px; top: 50%;
+    transform: translateY(-50%);
+    color: var(--blue-400);
+    font-size: 12px;
+    pointer-events: none;
+  }
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+  /* ═══ GENERATE BUTTON ═══ */
+  .btn-generate {
+    width: 100%;
+    padding: 13px;
+    background: linear-gradient(135deg, var(--blue-700) 0%, var(--blue-500) 100%);
+    color: #fff;
+    border: none;
+    border-radius: 11px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 14.5px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    transition: all .2s;
+    letter-spacing: .2px;
+    box-shadow: 0 5px 18px rgba(37,99,235,.38);
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-generate::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,.12) 0%, transparent 60%);
+    border-radius: 11px;
+  }
+  .btn-generate:hover {
+    background: linear-gradient(135deg, var(--blue-800) 0%, var(--blue-600) 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(37,99,235,.45);
+  }
+  .btn-generate:active { transform: translateY(0); box-shadow: 0 3px 12px rgba(37,99,235,.3); }
+  .btn-generate:disabled { background: var(--gray-200); color: var(--gray-400); cursor: not-allowed; transform: none; box-shadow: none; }
+
+  /* ═══ MATERI LIST ═══ */
+  .materi-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    max-height: 260px;
+    overflow-y: auto;
+    padding-right: 4px;
+  }
+  .materi-item {
+    padding: 8px 11px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1.5px solid transparent;
+    transition: all .15s;
+    color: var(--gray-600);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .materi-item::before { content: '📖'; font-size: 12px; flex-shrink: 0; }
+  .materi-item:hover { background: var(--blue-50); border-color: var(--blue-200); color: var(--blue-700); }
+  .materi-item.selected {
+    background: linear-gradient(135deg, var(--blue-50), #eff6ff);
+    border-color: var(--blue-400);
+    color: var(--blue-700);
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(37,99,235,.1);
+  }
+  .materi-item.selected::before { content: '✅'; }
+
+  /* ═══ OUTPUT ═══ */
+  .output-area { display: flex; flex-direction: column; gap: 20px; }
+
+  .empty-state {
+    background: var(--white);
+    border: 2px dashed var(--blue-200);
+    border-radius: 20px;
+    padding: 80px 48px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+  .empty-icon-wrap {
+    width: 80px; height: 80px;
+    background: linear-gradient(135deg, var(--blue-100), var(--blue-50));
+    border-radius: 20px;
+    display: grid;
+    place-items: center;
+    font-size: 36px;
+    border: 2px solid var(--blue-200);
+  }
+  .empty-title { font-family: 'Sora', sans-serif; font-size: 20px; font-weight: 700; color: var(--blue-700); }
+  .empty-desc { font-size: 14px; color: var(--gray-400); max-width: 360px; line-height: 1.65; }
+  .empty-tips {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .empty-tip {
+    background: var(--blue-50);
+    border: 1px solid var(--blue-100);
+    color: var(--blue-600);
+    padding: 5px 14px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  /* Loading */
+  .loading-box {
+    display: none;
+    background: var(--white);
+    border-radius: 20px;
+    border: 1px solid var(--blue-100);
+    padding: 56px 40px;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    box-shadow: var(--shadow);
+  }
+  .loading-box.visible { display: flex; }
+  .spinner-wrap { position: relative; width: 56px; height: 56px; }
+  .spinner {
+    width: 56px; height: 56px;
+    border: 4px solid var(--blue-100);
+    border-top-color: var(--blue-500);
+    border-radius: 50%;
+    animation: spin .85s linear infinite;
+  }
+  .spinner-inner {
+    position: absolute;
+    inset: 8px;
+    border: 3px solid var(--blue-50);
+    border-bottom-color: var(--teal-400);
+    border-radius: 50%;
+    animation: spin .6s linear infinite reverse;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading-title { font-family: 'Sora', sans-serif; font-size: 17px; font-weight: 700; color: var(--blue-700); }
+  .loading-sub { font-size: 13px; color: var(--gray-400); font-family: 'JetBrains Mono', monospace; }
+  .loading-bar-wrap { width: 240px; height: 4px; background: var(--blue-100); border-radius: 2px; overflow: hidden; }
+  .loading-bar { height: 100%; background: linear-gradient(90deg, var(--blue-500), var(--teal-400)); border-radius: 2px; animation: loadbar 2s ease-in-out infinite; }
+  @keyframes loadbar { 0%{width:0;margin-left:0} 50%{width:70%;margin-left:15%} 100%{width:0;margin-left:100%} }
+
+  /* ═══ RESULT ═══ */
+  .result-box { display: none; flex-direction: column; animation: fadeUp .4s ease; }
+  .result-box.visible { display: flex; }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
+
+  .result-header {
+    background: linear-gradient(135deg, var(--blue-900) 0%, var(--blue-800) 45%, var(--blue-700) 100%);
+    color: #fff;
+    padding: 24px 32px;
+    border-radius: 20px 20px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .result-header::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 100% at 100% 50%, rgba(96,165,250,.2) 0%, transparent 60%);
+  }
+  .result-header-left { position: relative; }
+  .result-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,.12);
+    border: 1px solid rgba(255,255,255,.18);
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-size: 11px;
+    color: #bfdbfe;
+    font-weight: 600;
+    letter-spacing: .7px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .result-header h2 {
+    font-family: 'Sora', sans-serif;
+    font-size: 21px;
+    font-weight: 800;
+    letter-spacing: -.3px;
+    margin-bottom: 5px;
+  }
+  .result-meta { font-size: 13px; color: rgba(255,255,255,.55); display: flex; flex-wrap: wrap; gap: 10px; }
+  .result-meta-chip {
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.14);
+    padding: 3px 10px;
+    border-radius: 100px;
+    font-size: 11.5px;
+    color: rgba(255,255,255,.75);
+  }
+  .result-actions { display: flex; gap: 8px; position: relative; flex-shrink: 0; }
+  .btn-ra {
+    background: rgba(255,255,255,.12);
+    border: 1px solid rgba(255,255,255,.22);
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    transition: background .18s;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .btn-ra:hover { background: rgba(255,255,255,.22); }
+
+  .result-body {
+    background: var(--white);
+    border: 1px solid var(--blue-100);
+    border-top: none;
+    border-radius: 0 0 20px 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+
+  /* RP Sections */
+  .rp-sec {
+    border-bottom: 1px solid var(--blue-50);
+    padding: 22px 28px;
+  }
+  .rp-sec:last-child { border-bottom: none; }
+  .rp-sec-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .rp-sec-icon {
+    width: 30px; height: 30px;
+    border-radius: 8px;
+    display: grid;
+    place-items: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  .rp-sec-title {
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.1px;
+    color: var(--blue-600);
+  }
+  .rp-sec-line { flex: 1; height: 1px; background: linear-gradient(90deg, var(--blue-100), transparent); }
+
+  /* Info grid */
+  .rp-info-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 10px; }
+  .rp-info-item {
+    background: var(--blue-50);
+    border: 1px solid var(--blue-100);
+    border-radius: 10px;
+    padding: 10px 13px;
+  }
+  .rp-info-key { font-size: 10.5px; font-weight: 700; color: var(--blue-500); text-transform: uppercase; letter-spacing: .6px; margin-bottom: 3px; }
+  .rp-info-val { font-size: 13.5px; color: var(--ink); font-weight: 600; }
+
+  /* Lists */
+  .rp-list { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  .rp-list li {
+    display: flex; gap: 10px;
+    font-size: 13.5px; line-height: 1.6; color: var(--gray-700);
+    align-items: flex-start;
+  }
+  .rp-list li::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--blue-400);
+    margin-top: 7px;
+    flex-shrink: 0;
+  }
+
+  /* Tags */
+  .tag-row { display: flex; flex-wrap: wrap; gap: 7px; }
+  .tag {
+    background: linear-gradient(135deg, var(--blue-50), var(--blue-100));
+    border: 1px solid var(--blue-200);
+    color: var(--blue-700);
+    padding: 5px 14px;
+    border-radius: 100px;
+    font-size: 12.5px;
+    font-weight: 600;
+    display: flex; align-items: center; gap: 5px;
+  }
+
+  /* Activity phases */
+  .phase-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .phase-card {
+    border-radius: 13px;
+    padding: 16px;
+    border: 1px solid transparent;
+  }
+  .phase-card.pembuka { background: linear-gradient(135deg, #fffbeb, #fef3c7); border-color: #fde68a; }
+  .phase-card.inti    { background: linear-gradient(135deg, var(--blue-50), #dbeafe); border-color: var(--blue-200); }
+  .phase-card.penutup { background: linear-gradient(135deg, #f0fdf4, #dcfce7); border-color: #bbf7d0; }
+  .phase-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  .phase-name { font-size: 11.5px; font-weight: 800; text-transform: uppercase; letter-spacing: .8px; }
+  .phase-card.pembuka .phase-name { color: #92400e; }
+  .phase-card.inti    .phase-name { color: var(--blue-700); }
+  .phase-card.penutup .phase-name { color: #166534; }
+  .phase-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 100px;
+    background: rgba(0,0,0,.07);
+    color: inherit;
+  }
+  .phase-items { display: flex; flex-direction: column; gap: 5px; }
+  .phase-item {
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: var(--gray-600);
+    display: flex; gap: 6px; align-items: flex-start;
+  }
+  .phase-item::before { content: '→'; flex-shrink: 0; opacity: .5; }
+
+  /* Asesmen cards */
+  .assess-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .assess-card { border-radius: 13px; padding: 16px; }
+  .assess-card.diagnostik { background: linear-gradient(135deg, #fffbeb, #fef9c3); border: 1px solid #fde68a; }
+  .assess-card.formatif   { background: linear-gradient(135deg, var(--blue-50), #dbeafe); border: 1px solid var(--blue-200); }
+  .assess-card.sumatif    { background: linear-gradient(135deg, #f0fdf4, #dcfce7); border: 1px solid #bbf7d0; }
+  .assess-label {
+    font-size: 10.5px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .8px;
+    margin-bottom: 8px;
+    display: flex; align-items: center; gap: 6px;
+  }
+  .assess-card.diagnostik .assess-label { color: #92400e; }
+  .assess-card.formatif   .assess-label { color: var(--blue-700); }
+  .assess-card.sumatif    .assess-label { color: #166534; }
+  .assess-text { font-size: 13px; line-height: 1.6; color: var(--gray-600); }
+
+  .prose { font-size: 13.5px; line-height: 1.75; color: var(--gray-700); }
+
+  /* Footer of result */
+  .rp-footer {
+    background: linear-gradient(135deg, var(--blue-50), #eff6ff);
+    border-top: 1px solid var(--blue-100);
+    padding: 16px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: var(--gray-500);
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .rp-footer-brand {
+    display: flex; align-items: center; gap: 8px;
+    font-weight: 700;
+    color: var(--blue-700);
+  }
+  .rp-footer a { color: var(--blue-500); text-decoration: none; font-weight: 600; }
+  .rp-footer a:hover { text-decoration: underline; }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: var(--blue-50); }
+  ::-webkit-scrollbar-thumb { background: var(--blue-200); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--blue-300); }
+
+  @media (max-width: 1000px) {
+    .main-wrapper { grid-template-columns: 1fr; padding: 24px 20px 60px; }
+    .sidebar { position: static; }
+    header { padding: 0 20px; }
+    .header-center { display: none; }
+    .hero { padding: 40px 20px 56px; }
+    .hero-inner { flex-direction: column; }
+    .hero-right { display: none; }
+    .phase-grid { grid-template-columns: 1fr; }
+    .assess-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<header>
+  <a class="logo" href="#">
+    <div class="logo-icon">📋</div>
+    <div>
+      <div class="logo-name">AL HASRA <span>RP Generator</span></div>
+      <div class="logo-tag">Kurikulum Merdeka</div>
+    </div>
+  </a>
+  <div class="header-center">
+    <div class="header-dot"></div>
+    Berbasis CP Kemendikdasmen 2024
+  </div>
+  <div class="header-right">
+    <button class="btn-hdr secondary" onclick="resetAll()">🔄 Reset</button>
+    <button class="btn-hdr primary" onclick="printRP()">🖨️ Cetak RP</button>
+  </div>
+</header>
+
+<!-- ═══ HERO ═══ -->
+<div class="hero">
+  <div class="hero-dots"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-pill">✦ Kurikulum Merdeka 2024</div>
+      <h1>Buat <em>Rencana Pembelajaran</em><br>Profesional dengan AI</h1>
+      <p>Hasilkan RP lengkap — Capaian Pembelajaran, Tujuan Pembelajaran, Kegiatan, hingga Asesmen — sesuai standar resmi Kemendikdasmen, dalam hitungan detik.</p>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="hero-stat-num">4</span>
+          <span class="hero-stat-lbl">Jenjang</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">50+</span>
+          <span class="hero-stat-lbl">Mata Pelajaran</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">CP</span>
+          <span class="hero-stat-lbl">Berbasis Resmi</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">AI</span>
+          <span class="hero-stat-lbl">Powered</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-feature"><span class="hero-feature-icon">🎯</span> Tujuan Pembelajaran Otomatis</div>
+      <div class="hero-feature"><span class="hero-feature-icon">📊</span> 3 Jenis Asesmen Terintegrasi</div>
+      <div class="hero-feature"><span class="hero-feature-icon">🌱</span> Profil Pelajar Pancasila</div>
+      <div class="hero-feature"><span class="hero-feature-icon">♿</span> Pembelajaran Berdiferensiasi</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ MAIN ═══ -->
+<div class="main-wrapper">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+
+    <!-- Steps -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon ci-blue">🗺️</div>
+        <span class="card-title">Panduan Langkah</span>
+      </div>
+      <div class="card-body">
+        <div class="steps">
+          <div class="step active" id="step1">
+            <div class="step-num">1</div>
+            <div class="step-info">
+              <div class="step-label">Identitas & Mapel</div>
+              <div class="step-desc">Jenjang, mata pelajaran, kelas</div>
+            </div>
+          </div>
+          <div class="step" id="step2">
+            <div class="step-num">2</div>
+            <div class="step-info">
+              <div class="step-label">Pilih Materi / Bab</div>
+              <div class="step-desc">Topik dari referensi CP resmi</div>
+            </div>
+          </div>
+          <div class="step" id="step3">
+            <div class="step-num">3</div>
+            <div class="step-info">
+              <div class="step-label">Detail Pembelajaran</div>
+              <div class="step-desc">Model, guru, catatan khusus</div>
+            </div>
+          </div>
+          <div class="step" id="step4">
+            <div class="step-num">4</div>
+            <div class="step-info">
+              <div class="step-label">Generate & Unduh</div>
+              <div class="step-desc">RP lengkap siap pakai</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Identitas -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon ci-blue">🏫</div>
+        <span class="card-title">Identitas Pembelajaran</span>
+      </div>
+      <div class="card-body">
+        <div class="field">
+          <label><span class="lbl-dot"></span>Jenjang Pendidikan</label>
+          <div class="select-wrap">
+            <select id="jenjang" onchange="updateMapel()">
+              <option value="">— Pilih Jenjang —</option>
+              <option value="SD">SD (Sekolah Dasar)</option>
+              <option value="SMP">SMP (Sekolah Menengah Pertama)</option>
+              <option value="SMA">SMA (Sekolah Menengah Atas)</option>
+              <option value="SMK">SMK (Sekolah Menengah Kejuruan)</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label><span class="lbl-dot"></span>Mata Pelajaran</label>
+          <div class="select-wrap">
+            <select id="mapel" onchange="updateKelas(); updateMateri()">
+              <option value="">— Pilih Mata Pelajaran —</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label><span class="lbl-dot"></span>Kelas & Fase</label>
+          <div class="select-wrap">
+            <select id="kelas">
+              <option value="">— Pilih Kelas —</option>
+            </select>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field" style="margin-bottom:0">
+            <label><span class="lbl-dot"></span>Alokasi (JP)</label>
+            <div class="select-wrap">
+              <select id="alokasi">
+                <option value="2">2 JP</option>
+                <option value="3">3 JP</option>
+                <option value="4" selected>4 JP</option>
+                <option value="6">6 JP</option>
+              </select>
+            </div>
+          </div>
+          <div class="field" style="margin-bottom:0">
+            <label><span class="lbl-dot"></span>Jml Siswa</label>
+            <input type="number" id="jumlah" value="32" min="1" max="60">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Materi -->
+    <div class="card" id="card-materi" style="display:none">
+      <div class="card-header">
+        <div class="card-icon ci-amber">📖</div>
+        <span class="card-title">Pilih Materi / Bab</span>
+      </div>
+      <div class="card-body">
+        <p style="font-size:12px;color:var(--gray-400);margin-bottom:10px;line-height:1.6">Pilih topik berdasarkan referensi CP resmi Kemendikdasmen:</p>
+        <div class="materi-list" id="materi-list"></div>
+      </div>
+    </div>
+
+    <!-- Detail -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon ci-teal">⚙️</div>
+        <span class="card-title">Detail & Konteks</span>
+      </div>
+      <div class="card-body">
+        <div class="field">
+          <label><span class="lbl-dot"></span>Nama Guru</label>
+          <input type="text" id="nama_guru" placeholder="Contoh: Siti Rahayu, S.Pd.">
+        </div>
+        <div class="field">
+          <label><span class="lbl-dot"></span>Nama Sekolah</label>
+          <input type="text" id="nama_sekolah" placeholder="Contoh: SMP Negeri 1 Jakarta">
+        </div>
+        <div class="field">
+          <label><span class="lbl-dot"></span>Model Pembelajaran</label>
+          <div class="select-wrap">
+            <select id="model">
+              <option value="Problem Based Learning (PBL)">Problem Based Learning</option>
+              <option value="Project Based Learning (PjBL)">Project Based Learning</option>
+              <option value="Discovery Learning">Discovery Learning</option>
+              <option value="Inquiry Learning">Inquiry Learning</option>
+              <option value="Cooperative Learning">Cooperative Learning</option>
+              <option value="Direct Instruction">Direct Instruction</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label><span class="lbl-dot"></span>Catatan / Konteks Khusus</label>
+          <textarea id="catatan" rows="2" placeholder="Mis: tersedia lab komputer, siswa inklusif, dll." style="resize:vertical"></textarea>
+        </div>
+        <button class="btn-generate" onclick="generateRP()" id="btn-gen">
+          ✦ &nbsp;Buat Rencana Pembelajaran
+        </button>
+      </div>
+    </div>
+
+  </div><!-- /sidebar -->
+
+  <!-- OUTPUT -->
+  <div class="output-area">
+
+    <div class="empty-state" id="empty-state">
+      <div class="empty-icon-wrap">📄</div>
+      <div class="empty-title">Rencana Pembelajaran Anda</div>
+      <div class="empty-desc">Lengkapi formulir di samping lalu klik <strong>"Buat Rencana Pembelajaran"</strong> untuk menghasilkan RP yang terstruktur secara otomatis.</div>
+      <div class="empty-tips">
+        <span class="empty-tip">🎯 Tujuan Pembelajaran</span>
+        <span class="empty-tip">📊 Asesmen Lengkap</span>
+        <span class="empty-tip">🌱 Profil Pancasila</span>
+        <span class="empty-tip">♿ Diferensiasi</span>
+      </div>
+    </div>
+
+    <div class="loading-box" id="loading-box">
+      <div class="spinner-wrap">
+        <div class="spinner"></div>
+        <div class="spinner-inner"></div>
+      </div>
+      <div class="loading-title">Menyusun Rencana Pembelajaran…</div>
+      <div class="loading-sub" id="loading-sub">Memuat Capaian Pembelajaran…</div>
+      <div class="loading-bar-wrap"><div class="loading-bar"></div></div>
+    </div>
+
+    <div class="result-box" id="result-box">
+      <div class="result-header">
+        <div class="result-header-left">
+          <div class="result-badge">📋 Rencana Pembelajaran</div>
+          <h2 id="result-title">—</h2>
+          <div class="result-meta" id="result-meta"></div>
+        </div>
+        <div class="result-actions">
+          <button class="btn-ra" onclick="copyRP()">📋 Salin</button>
+          <button class="btn-ra" onclick="printRP()">🖨️ Cetak</button>
+        </div>
+      </div>
+      <div class="result-body" id="result-body"></div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// ── DATA ──────────────────────────────────────────────────────────
+const DATA = {
+  SD: {
+    mapel: ["Bahasa Indonesia","Matematika","IPAS","PPKn","PJOK","Seni Budaya","Pendidikan Agama Islam","Bahasa Inggris"],
+    kelas: [
+      {label:"Kelas 1 — Fase A",val:"Kelas 1 (Fase A)"},
+      {label:"Kelas 2 — Fase A",val:"Kelas 2 (Fase A)"},
+      {label:"Kelas 3 — Fase B",val:"Kelas 3 (Fase B)"},
+      {label:"Kelas 4 — Fase B",val:"Kelas 4 (Fase B)"},
+      {label:"Kelas 5 — Fase C",val:"Kelas 5 (Fase C)"},
+      {label:"Kelas 6 — Fase C",val:"Kelas 6 (Fase C)"},
+    ]
+  },
+  SMP: {
+    mapel: ["Bahasa Indonesia","Matematika","IPA","IPS","PPKn","PJOK","Seni Budaya","Bahasa Inggris","Informatika","Bahasa Daerah"],
+    kelas: [
+      {label:"Kelas 7 — Fase D",val:"Kelas 7 (Fase D)"},
+      {label:"Kelas 8 — Fase D",val:"Kelas 8 (Fase D)"},
+      {label:"Kelas 9 — Fase D",val:"Kelas 9 (Fase D)"},
+    ]
+  },
+  SMA: {
+    mapel: ["Bahasa Indonesia","Matematika","Fisika","Kimia","Biologi","Sejarah","Geografi","Ekonomi","Sosiologi","PJOK","Seni Budaya","Bahasa Inggris","Informatika","PPKn"],
+    kelas: [
+      {label:"Kelas 10 — Fase E",val:"Kelas 10 (Fase E)"},
+      {label:"Kelas 11 — Fase F",val:"Kelas 11 (Fase F)"},
+      {label:"Kelas 12 — Fase F",val:"Kelas 12 (Fase F)"},
+    ]
+  },
+  SMK: {
+    mapel: ["Bahasa Indonesia","Matematika","Bahasa Inggris","PJOK","PPKn","Dasar-Dasar TKI","Dasar-Dasar Akuntansi","Dasar-Dasar Otomotif","Projek IPAS"],
+    kelas: [
+      {label:"Kelas 10 — Fase E",val:"Kelas 10 (Fase E)"},
+      {label:"Kelas 11 — Fase F",val:"Kelas 11 (Fase F)"},
+      {label:"Kelas 12 — Fase F",val:"Kelas 12 (Fase F)"},
+    ]
+  }
+};
+
+const MATERI_DB = {
+  "Bahasa Indonesia": {
+    SD:["Mengenal Huruf dan Bunyi","Membaca Nyaring","Menulis Kalimat Sederhana","Teks Deskripsi","Puisi Anak","Teks Narasi","Kosakata Baru","Tanda Baca Dasar"],
+    SMP:["Teks Laporan Observasi","Teks Eksposisi","Teks Berita","Surat Resmi","Cerpen","Drama","Puisi Modern","Debat","Presentasi Lisan","Teks Biografi"],
+    SMA:["Teks Argumentasi","Teks Editorial","Hikayat & Sastra Lama","Novel","Resensi Buku","Karya Tulis Ilmiah","Ceramah","Teks Prosedur Kompleks"],
+    SMK:["Korespondensi Bisnis","Laporan Kerja","Presentasi Profesional","Teks Prosedur Teknis"]
+  },
+  "Matematika": {
+    SD:["Bilangan Cacah","Penjumlahan & Pengurangan","Perkalian & Pembagian","Pecahan","Geometri Dasar","Pengukuran Panjang","Data & Grafik Sederhana"],
+    SMP:["Bilangan Bulat","Persamaan Linear","Himpunan","Geometri Bidang","Statistika Dasar","Peluang","Fungsi","Sistem Persamaan Linear","Teorema Pythagoras"],
+    SMA:["Fungsi Komposisi","Trigonometri","Matriks","Transformasi Geometri","Limit Fungsi","Turunan","Integral","Statistika Lanjut","Program Linear"],
+    SMK:["Barisan & Deret","Persamaan Kuadrat","Trigonometri Terapan","Statistika Dasar","Peluang"]
+  },
+  "IPA": {
+    SMP:["Sel & Jaringan","Sistem Gerak Manusia","Pencernaan & Nutrisi","Pernapasan","Zat & Perubahannya","Energi & Usaha","Gelombang Bunyi","Cahaya & Optik","Ekosistem","Perubahan Iklim","Partikel Penyusun Materi"]
+  },
+  "IPAS": {
+    SD:["Tubuh Manusia","Tumbuhan & Hewan","Cuaca & Iklim","Air & Daur Air","Lingkungan Hidup","Materi & Perubahannya","Gaya & Gerak","Energi Terbarukan","Nusantara dan Keragaman Budaya"]
+  },
+  "Fisika": {
+    SMA:["Besaran & Pengukuran","Kinematika","Dinamika Newton","Usaha & Energi","Impuls & Momentum","Fluida","Termodinamika","Gelombang","Listrik Statis","Listrik Dinamis","Kemagnetan","Fisika Modern"]
+  },
+  "Kimia": {
+    SMA:["Struktur Atom","Tabel Periodik","Ikatan Kimia","Stoikiometri","Larutan","Termokimia","Laju Reaksi","Kesetimbangan","Asam-Basa","Redoks","Elektrokimia","Kimia Organik"]
+  },
+  "Biologi": {
+    SMA:["Sel & Organel","Jaringan Tumbuhan","Jaringan Hewan","Sistem Gerak","Sistem Sirkulasi","Sistem Pernapasan","Sistem Ekskresi","Sistem Koordinasi","Reproduksi","Hereditas Mendel","Mutasi & Evolusi","Bioteknologi"]
+  },
+  "PPKn": {
+    SD:["Pancasila","Simbol Negara","Keberagaman Budaya","Hak & Kewajiban Anak","Gotong Royong","Norma Sosial"],
+    SMP:["Pancasila sebagai Dasar Negara","UUD 1945","Kebhinnekaan","Hak Asasi Manusia","Sistem Pemerintahan","Demokrasi"],
+    SMA:["Sistem Hukum Indonesia","Wawasan Nusantara","Bela Negara","Integrasi Nasional","Masyarakat Madani","Globalisasi"],
+    SMK:["Kewarganegaraan Digital","Etika Profesi","Hak & Kewajiban Pekerja"]
+  },
+  "Bahasa Inggris": {
+    SD:["Greetings","Numbers & Colors","Family Members","Daily Activities","Simple Sentences"],
+    SMP:["Describing People","Expressing Opinion","Narrative Text","Procedure Text","Recount Text","Descriptive Text","Invitation & Announcement"],
+    SMA:["Analytical Exposition","News Item","Review Text","Discussion Text","Explanation Text","Hortatory Exposition"],
+    SMK:["Business Correspondence","Job Application","Technical Writing","Workplace Communication"]
+  },
+  "Informatika": {
+    SMP:["Algoritma & Pemrograman Dasar","Berpikir Komputasional","Spreadsheet","Internet & Literasi Digital","Keamanan Data"],
+    SMA:["Pemrograman Python","Struktur Data","Basis Data","Jaringan Komputer","Kecerdasan Buatan","Analisis Data","Keamanan Siber"]
+  },
+  "Sejarah": {
+    SMA:["Manusia & Sejarah","Peradaban Awal Indonesia","Kerajaan Hindu-Buddha","Kerajaan Islam","Kolonialisme","Pergerakan Nasional","Proklamasi & Revolusi","Orde Lama & Baru","Reformasi"]
+  },
+  "Ekonomi": {
+    SMA:["Ilmu Ekonomi Dasar","Masalah Ekonomi","Peran Pelaku Ekonomi","Permintaan & Penawaran","Elastisitas","Pasar","Uang & Bank","Ketenagakerjaan","APBN & APBD","Pajak","Perdagangan Internasional"]
+  }
+};
+
+let selectedMateri = "";
+
+function updateMapel() {
+  const j = document.getElementById('jenjang').value;
+  const el = document.getElementById('mapel');
+  el.innerHTML = '<option value="">— Pilih Mata Pelajaran —</option>';
+  if (!j) return;
+  (DATA[j]?.mapel||[]).forEach(m => { const o=document.createElement('option'); o.value=m; o.textContent=m; el.appendChild(o); });
+  document.getElementById('card-materi').style.display='none';
+  selectedMateri='';
+  setStep(2);
+}
+
+function updateKelas() {
+  const j = document.getElementById('jenjang').value;
+  const el = document.getElementById('kelas');
+  el.innerHTML = '<option value="">— Pilih Kelas —</option>';
+  if (!j) return;
+  (DATA[j]?.kelas||[]).forEach(k => { const o=document.createElement('option'); o.value=k.val; o.textContent=k.label; el.appendChild(o); });
+}
+
+function updateMateri() {
+  const j = document.getElementById('jenjang').value;
+  const m = document.getElementById('mapel').value;
+  if (!m) return;
+  const db = MATERI_DB[m];
+  const list = db ? (db[j] || db[Object.keys(db)[0]] || []) : [`Bab 1: Pengantar ${m}`,`Bab 2: Konsep Dasar ${m}`,`Bab 3: Penerapan ${m}`,`Bab 4: Evaluasi & Refleksi`];
+  const card = document.getElementById('card-materi');
+  const listEl = document.getElementById('materi-list');
+  listEl.innerHTML=''; card.style.display='block'; selectedMateri='';
+  list.forEach(item => {
+    const div=document.createElement('div'); div.className='materi-item'; div.textContent=item;
+    div.onclick=()=>{
+      document.querySelectorAll('.materi-item').forEach(i=>i.classList.remove('selected'));
+      div.classList.add('selected'); selectedMateri=item; setStep(3);
+    };
+    listEl.appendChild(div);
+  });
+  setStep(2);
+}
+
+function setStep(n) {
+  [1,2,3,4].forEach(i => {
+    const el=document.getElementById('step'+i);
+    el.classList.remove('active','done');
+    if(i<n) el.classList.add('done');
+    else if(i===n) el.classList.add('active');
+  });
+}
+
+async function generateRP() {
+  const jenjang=document.getElementById('jenjang').value;
+  const mapel=document.getElementById('mapel').value;
+  const kelas=document.getElementById('kelas').value;
+  const alokasi=document.getElementById('alokasi').value;
+  const model=document.getElementById('model').value;
+  const jumlah=document.getElementById('jumlah').value||'32';
+  const namaGuru=document.getElementById('nama_guru').value||'—';
+  const namaSekolah=document.getElementById('nama_sekolah').value||'—';
+  const catatan=document.getElementById('catatan').value;
+
+  if(!jenjang||!mapel||!kelas){alert('Mohon lengkapi Jenjang, Mata Pelajaran, dan Kelas.');return;}
+  if(!selectedMateri){alert('Mohon pilih salah satu Materi / Bab dari daftar.');return;}
+
+  setStep(4);
+  document.getElementById('empty-state').style.display='none';
+  document.getElementById('result-box').classList.remove('visible');
+  document.getElementById('loading-box').classList.add('visible');
+  document.getElementById('btn-gen').disabled=true;
+
+  const msgs=["Memuat Capaian Pembelajaran (CP)…","Merumuskan Tujuan Pembelajaran (TP)…","Menyusun Alur Tujuan Pembelajaran (ATP)…","Merancang kegiatan pembelajaran…","Menyiapkan instrumen asesmen…","Finalisasi Rencana Pembelajaran…"];
+  let mi=0; const iv=setInterval(()=>{ document.getElementById('loading-sub').textContent=msgs[mi%msgs.length]; mi++; },1400);
+
+  const prompt=`Kamu adalah ahli pendidikan Kurikulum Merdeka Indonesia. Buat Rencana Pembelajaran (RP) lengkap:
+Jenjang: ${jenjang} | Mapel: ${mapel} | Kelas/Fase: ${kelas} | Topik: ${selectedMateri} | Alokasi: ${alokasi} JP | Model: ${model} | Siswa: ${jumlah}
+${catatan?'Catatan: '+catatan:''}
+Referensi CP: https://guru.kemendikdasmen.go.id/kurikulum/referensi-penerapan/capaian-pembelajaran/
+
+Balas HANYA JSON valid (tanpa markdown):
+{"judul":"...","cp_elemen":"...","tujuan_pembelajaran":["...","...","..."],"profil_pelajar_pancasila":["...","..."],"media_alat":["...","..."],"sumber_belajar":["...","..."],"kegiatan_pembuka":["...","...","...","..."],"kegiatan_inti":["...","...","...","...","..."],"kegiatan_penutup":["...","...","..."],"asesmen_diagnostik":"...","asesmen_formatif":"...","asesmen_sumatif":"...","diferensiasi":"...","refleksi_guru":["...","...","..."]}`;
+
+  try {
+    const res=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:1000,messages:[{role:"user",content:prompt}]})});
+    const data=await res.json();
+    const text=data.content.map(i=>i.text||"").join("\n");
+    const rp=JSON.parse(text.replace(/```json|```/g,"").trim());
+    renderRP(rp,{jenjang,mapel,kelas,alokasi,model,jumlah,namaGuru,namaSekolah});
+  } catch(e) {
+    renderRP(getFallback(jenjang,mapel,kelas,selectedMateri,alokasi,model),{jenjang,mapel,kelas,alokasi,model,jumlah,namaGuru,namaSekolah});
+  } finally {
+    clearInterval(iv);
+    document.getElementById('loading-box').classList.remove('visible');
+    document.getElementById('result-box').classList.add('visible');
+    document.getElementById('btn-gen').disabled=false;
+    document.getElementById('result-box').scrollIntoView({behavior:'smooth',block:'start'});
+  }
+}
+
+function getFallback(jenjang,mapel,kelas,materi,alokasi,model){
+  return{
+    judul:`Memahami ${materi}`,
+    cp_elemen:`Peserta didik mampu memahami, menganalisis, dan menerapkan konsep ${materi} dalam konteks kehidupan nyata sesuai fase perkembangannya pada jenjang ${jenjang}.`,
+    tujuan_pembelajaran:[
+      `Peserta didik dapat menjelaskan konsep dasar ${materi} dengan kata-kata sendiri`,
+      `Peserta didik dapat mengidentifikasi komponen-komponen utama dalam ${materi}`,
+      `Peserta didik dapat menerapkan pemahaman ${materi} dalam situasi kontekstual`,
+      `Peserta didik dapat merefleksikan proses belajarnya terkait ${materi}`
+    ],
+    profil_pelajar_pancasila:["Bernalar Kritis","Kreatif","Mandiri","Bergotong Royong"],
+    media_alat:["Papan tulis / proyektor","LKPD (Lembar Kerja Peserta Didik)","Media visual / infografis","Alat tulis"],
+    sumber_belajar:[`Buku Siswa ${mapel} ${kelas}`,`Modul Ajar ${materi} Kemendikdasmen`,"Internet sumber terpercaya","Guru sebagai fasilitator"],
+    kegiatan_pembuka:[
+      "Guru membuka kelas dengan salam, doa, dan presensi (3 menit)",
+      `Apersepsi: guru mengaitkan ${materi} dengan pengalaman sehari-hari peserta didik (5 menit)`,
+      "Guru menyampaikan tujuan pembelajaran dan alur kegiatan (4 menit)",
+      "Pertanyaan pemantik yang menggugah rasa ingin tahu peserta didik (3 menit)"
+    ],
+    kegiatan_inti:[
+      `Guru mempresentasikan stimulus/kasus terkait ${materi} dengan media visual (10 menit)`,
+      `Peserta didik berkelompok (4-5 orang) mendiskusikan pertanyaan pemandu tentang ${materi} (15 menit)`,
+      "Setiap kelompok mengerjakan LKPD yang telah disiapkan guru (20 menit)",
+      "Perwakilan kelompok mempresentasikan hasil, kelompok lain menanggapi (15 menit)",
+      "Guru memberikan penguatan, klarifikasi, dan meluruskan miskonsepsi (10 menit)"
+    ],
+    kegiatan_penutup:[
+      "Guru dan peserta didik bersama-sama membuat simpulan pembelajaran (5 menit)",
+      "Peserta didik mengerjakan kuis singkat sebagai asesmen formatif (5 menit)",
+      "Guru menyampaikan rencana pertemuan berikutnya dan penugasan (5 menit)"
+    ],
+    asesmen_diagnostik:"Pertanyaan lisan di awal untuk menggali pengetahuan awal; observasi kesiapan belajar peserta didik.",
+    asesmen_formatif:"Observasi saat diskusi kelompok, penilaian LKPD, kuis singkat 5 soal di akhir pembelajaran.",
+    asesmen_sumatif:"Tes tertulis akhir bab (pilihan ganda + uraian), penilaian proyek/portofolio, dan presentasi kelompok.",
+    diferensiasi:`Konten: materi disediakan dalam tingkat kesulitan berbeda. Proses: scaffolding bagi yang membutuhkan dukungan. Produk: peserta didik bebas menyajikan pemahaman ${materi} dalam bentuk tulisan, gambar, video pendek, atau presentasi lisan.`,
+    refleksi_guru:[
+      `Apakah seluruh peserta didik memahami konsep ${materi} yang diajarkan hari ini?`,
+      "Apa hambatan yang muncul selama proses pembelajaran berlangsung?",
+      "Strategi apa yang perlu diperbaiki untuk pertemuan berikutnya?"
+    ]
+  };
+}
+
+function renderRP(rp, meta) {
+  document.getElementById('result-title').textContent = rp.judul || `Rencana Pembelajaran — ${selectedMateri}`;
+  const metaEl = document.getElementById('result-meta');
+  metaEl.innerHTML = [meta.mapel,meta.kelas,`${meta.alokasi} JP`,meta.model].map(x=>`<span class="result-meta-chip">${x}</span>`).join('');
+
+  const body = document.getElementById('result-body');
+  body.innerHTML = `
+    <div class="rp-sec">
+      <div class="rp-sec-header">
+        <div class="rp-sec-icon" style="background:linear-gradient(135deg,#dbeafe,#bfdbfe)">🏷️</div>
+        <div class="rp-sec-title">Identitas Pembelajaran</div>
+        <div class="rp-sec-line"></div>
+      </div>
+      <div class="rp-info-grid">
+        <div class="rp-info-item"><div class="rp-info-key">Jenjang</div><div class="rp-info-val">${meta.jenjang}</div></div>
+        <div class="rp-info-item"><div class="rp-info-key">Mata Pelajaran</div><div class="rp-info-val">${meta.mapel}</div></div>
+        <div class="rp-info-item"><div class="rp-info-key">Kelas / Fase</div><div class="rp-info-val">${meta.kelas}</div></div>
+        <div class="rp-info-item"><div class="rp-info-key">Topik / Materi</div><div class="rp-info-val">${selectedMateri}</div></div>
+        <div class="rp-info-item"><div class="rp-info-key">Alokasi Waktu</div><div class="rp-info-val">${meta.alokasi} JP</div></div>
+        <div class="rp-info-item"><div class="rp-info-key">Model Pembelajaran</div><div class="rp-info-val">${meta.model}</div></div>
+        <div class="rp-info-item"><div class="rp-info-key">Jumlah Siswa</div><div class="rp-info-val">${meta.jumlah} peserta didik</div></div>
+        <div class="rp-info-item"><div class="rp-info-key">Nama Guru</div><div class="rp-info-val">${meta.namaGuru}</div></div>
+        ${meta.namaSekolah && meta.namaSekolah!=='—' ? `<div class="rp-info-item"><div class="rp-info-key">Nama Sekolah</div><div class="rp-info-val">${meta.namaSekolah}</div></div>` : ''}
+      </div>
+    </div>
+
+    <div class="rp-sec">
+      <div class="rp-sec-header">
+        <div class="rp-sec-icon" style="background:linear-gradient(135deg,#dbeafe,#bfdbfe)">🎯</div>
+        <div class="rp-sec-title">Capaian Pembelajaran (CP)</div>
+        <div class="rp-sec-line"></div>
+      </div>
+      <div class="prose">${rp.cp_elemen}</div>
+    </div>
+
+    <div class="rp-sec">
+      <div class="rp-sec-header">
+        <div class="rp-sec-icon" style="background:linear-gradient(135deg,#ccfbf1,#99f6e4)">📌</div>
+        <div class="rp-sec-title">Tujuan Pembelajaran (TP)</div>
+        <div class="rp-sec-line"></div>
+      </div>
+      <ul class="rp-list">${(rp.tujuan_pembelajaran||[]).map(t=>`<li>${t}</li>`).join('')}</ul>
+    </div>
+
+    <div class="rp-sec">
+      <div class="rp-sec-header">
+        <div class="rp-sec-icon" style="background:linear-gradient(135deg,#fef3c7,#fde68a)">🌟</div>
+        <div class="rp-sec-title">Profil Pelajar Pancasila</div>
+        <div class="rp-sec-line"></div>
+      </div>
+      <div class="tag-row">${(rp.profil_pelajar_pancasila||[]).map(p=>`<span class="tag">✦ ${p}</span>`).join('')}</div>
+    </div>
+
+    <div class="rp-sec">
+      <div class="rp-sec-header">
+        <div class="rp-sec-icon" style="background:linear-gradient(135deg,#ede9fe,#ddd6fe)">🛠️</div>
+        <div class="rp-sec-title">Media, Alat & Sumber Belajar</div>
+        <div class="rp-sec-line"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+        <div>
+          <div style="font-size:11px;font-weight:700;color:#7c3aed;text-transform:uppercase;letter-spacing:.7px;margin-bottom:10px">Media & Alat</div>
+          <ul class="rp-list">${(rp.media_alat||[]).map(m=>`<li>${m}</li>`).join('')}</ul>
+        </div>
+        <div>
+          <div style="font-size:11px;font-weight:700;color:#7c3aed;text-transform:uppercase;letter-spacing:.7px;margin-bottom:10px">Sumber Belajar</div>
+          <ul class="rp-list">${(rp.sumber_belajar||[]).map(s=>`<li>${s}</li>`).join('')}</ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="rp-sec">
+      <div class="rp-sec-header">
+        <div class="rp-sec-icon" style="background:linear-gradient(135deg,#dbeafe,#bfdbfe)">📚</div>
+        <div class="rp-sec-title">Langkah Kegiatan Pembelajaran</div>
+        <div class="rp-sec-line"></div>
+      </div>
+      <div class="phase-grid">
+        <div class="phase-card pembuka">
+          <div class="phase-head">
+            <div class="phase-name">🌅 Pembuka</div>
+            <span class="phase-time">~15 mnt</span>
+          </div>
+          <div class="phase-items">${(rp.kegiatan_pembuka||[]).map(k=>`<div class="phase-item">${k}</div>`).join('')}</div>
+        </div>
+        <div class="phase-card inti">
+          <div class="phase-head">
+            <div class="phase-name">⚡ Kegiatan Inti</div>
+            <span class="phase-time">~${meta.alokasi*20-30} mnt</span>
+          </div>
+          <div class="phase-items">${(rp.kegiatan_inti||[]).map(k=>`<div class="phase-item">${k}</div>`).join('')}</div>
+        </div>
+        <div class="phase-card penutup">
+          <div class="phase-head">
+            <div class="phase-name">🌙 Penutup</div>
+            <span class="phase-time">~15 mnt</span>
+          </div>
+          <div class="phase-items">${(rp.kegiatan_penutup||[]).map(k=>`<div class="phase-item">${k}</div>`).join('')}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rp-sec">
+      <div class="rp-sec-header">
+        <div class="rp-sec-icon" style="background:linear-gradient(135deg,#fef3c7,#fde68a)">📊</div>
+        <div class="rp-sec-title">Rencana Asesmen</div>
+        <div class="rp-sec-line"></div>
+      </div>
+      <div class="assess-grid">
+        <div class="assess-card diagnostik">
+          <div class="assess-label">🔍 Diagnostik</div>
+          <div class="assess-text">${rp.asesmen_diagnostik||'—'}</div>
+        </div>
+        <div class="assess-card formatif">
+          <div class="assess-label">📝 Formatif</div>
+          <div class="assess-text">${rp.asesmen_formatif||'—'}</div>
+        </div>
+        <div class="assess-card sumatif">
+          <div class="assess-label">🏆 Sumatif</div>
+          <div class="assess-text">${rp.asesmen_sumatif||'—'}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rp-sec">
+      <div class="rp-sec-header">
+        <div class="rp-sec-icon" style="background:linear-gradient(135deg,#ccfbf1,#99f6e4)">♿</div>
+        <div class="rp-sec-title">Pembelajaran Berdiferensiasi</div>
+        <div class="rp-sec-line"></div>
+      </div>
+      <div class="prose">${rp.diferensiasi||'—'}</div>
+    </div>
+
+    <div class="rp-sec">
+      <div class="rp-sec-header">
+        <div class="rp-sec-icon" style="background:linear-gradient(135deg,#ede9fe,#ddd6fe)">🔁</div>
+        <div class="rp-sec-title">Refleksi Guru</div>
+        <div class="rp-sec-line"></div>
+      </div>
+      <ul class="rp-list">${(rp.refleksi_guru||[]).map(r=>`<li>${r}</li>`).join('')}</ul>
+    </div>
+
+    <div class="rp-footer">
+      <div class="rp-footer-brand">
+        📋 Disusun oleh <span style="color:var(--blue-600)">&nbsp;${meta.namaGuru}</span>
+        ${meta.namaSekolah && meta.namaSekolah!=='—' ? `&nbsp;·&nbsp;<span style="color:var(--gray-500);font-weight:500">${meta.namaSekolah}</span>` : ''}
+      </div>
+      <span style="color:var(--gray-400)">Sumber CP: <a href="https://guru.kemendikdasmen.go.id/kurikulum/referensi-penerapan/capaian-pembelajaran/" target="_blank">Kemendikdasmen 2024</a></span>
+    </div>
+  `;
+}
+
+function resetAll() {
+  ['jenjang','catatan','nama_guru','nama_sekolah'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('mapel').innerHTML='<option value="">— Pilih Mata Pelajaran —</option>';
+  document.getElementById('kelas').innerHTML='<option value="">— Pilih Kelas —</option>';
+  document.getElementById('jumlah').value='32';
+  document.getElementById('card-materi').style.display='none';
+  document.getElementById('empty-state').style.display='';
+  document.getElementById('result-box').classList.remove('visible');
+  document.getElementById('loading-box').classList.remove('visible');
+  document.getElementById('btn-gen').disabled=false;
+  selectedMateri='';
+  setStep(1);
+}
+
+function printRP() {
+  if(!document.getElementById('result-box').classList.contains('visible')){ alert('Belum ada RP. Silakan buat RP terlebih dahulu.'); return; }
+  window.print();
+}
+
+function copyRP() {
+  const text = document.getElementById('result-body').innerText;
+  navigator.clipboard.writeText(text).then(()=>alert('Rencana Pembelajaran berhasil disalin!')).catch(()=>alert('Gagal. Silakan pilih teks manual.'));
+}
+
+const ps = document.createElement('style');
+ps.textContent = `@media print{
+  header,.hero,.sidebar{display:none!important}
+  .main-wrapper{display:block;padding:0}
+  .result-header{background:#1e3a8a!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .result-box{display:flex!important}
+  .empty-state,.loading-box{display:none!important}
+  .result-body{border:1px solid #dbeafe}
+}`;
+document.head.appendChild(ps);
+</script>
+</body>
+</html>
